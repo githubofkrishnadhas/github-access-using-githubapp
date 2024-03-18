@@ -5,16 +5,17 @@ import os
 import requests
 
 
-def create_jwt(pem_path, app_id):
+def create_jwt(private_key, app_id):
     """
     function to create JWT from GitHub app id and pvt key
-    :param pem_path:
+    :param private_key:
     :param app_id:
     :return:
     """
     # Open PEM
-    with open(pem_path, 'rb') as pem_file:
-        signing_key = jwk_from_pem(pem_file.read())
+    # with open(pem_path, 'rb') as pem_file:
+    #     signing_key = jwk_from_pem(pem_file.read())
+    signing_key = jwk_from_pem(private_key.encode('utf-8'))
 
     payload = {
         # Issued at time
@@ -41,15 +42,15 @@ def main():
     :return:
     """
     parser = argparse.ArgumentParser(description="Create JWT for GitHub App authentication")
-    parser.add_argument("--pem_path",required=True, type=str, help="Path to the private PEM file")
-    parser.add_argument("--app_id",required=True, type=str, help="Your GitHub App ID")
+    parser.add_argument("--github_app_private_key",required=True, type=str, help="Github App Private key")
+    parser.add_argument("--github_app_id",required=True, type=str, help="Your GitHub App ID")
     args = parser.parse_args()
 
-    pem_path = args.pem_path
+    private_key = args.github_app_private_key
     app_id = args.app_id
 
     # function call
-    create_jwt(pem_path, app_id)
+    create_jwt(private_key, app_id)
 
 if __name__ == "__main__":
     main()
