@@ -3,7 +3,7 @@ import requests
 
 
 def make_github_api_request():
-    url = "  https://api.github.com/repositories"
+    url = "  https://api.github.com/apps"
     headers = {
         "Accept": "application/vnd.github+json",
         "Authorization": f"Bearer {os.getenv('GITHUB_JWT')}",
