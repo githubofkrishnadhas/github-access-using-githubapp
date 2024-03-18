@@ -4,7 +4,6 @@ author: "githubofkrishnadhas"
 inputs:
   github_app_id:
     description: "Github App ID"
-    type: number
     required: true
   github_app_private_key:
     description: "Github App private key"
