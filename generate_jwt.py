@@ -47,7 +47,7 @@ def main():
     args = parser.parse_args()
 
     private_key = args.github_app_private_key
-    app_id = args.app_id
+    app_id = args.github_app_id
 
     # function call
     create_jwt(private_key, app_id)
