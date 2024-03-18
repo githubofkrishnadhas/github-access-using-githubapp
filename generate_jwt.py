@@ -2,7 +2,6 @@ from jwt import JWT, jwk_from_pem
 import time
 import argparse
 import os
-import requests
 
 
 def create_jwt(private_key, app_id):
@@ -36,23 +35,7 @@ def create_jwt(private_key, app_id):
     print(f"JWT set as environment variable: JWT={encoded_jwt}")
     return encoded_jwt
 
-def make_github_api_request():
-    url = "  https://api.github.com/app"
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {os.getenv('GITHUB_JWT')}",
-        "X-GitHub-Api-Version": "2022-11-28"
-    }
 
-    response = requests.get(url, headers=headers)
-    response_json = response.json()
-
-    if response.status_code == 200:
-        print("API request successful:")
-        print(response_json)
-    else:
-        print(f"API request failed with status code {response.status_code}:")
-        print(response_json)
 def main():
     """
     to test the code
@@ -68,7 +51,6 @@ def main():
 
     # function call
     create_jwt(private_key, app_id)
-    make_github_api_request()
 
 if __name__ == "__main__":
     main()
