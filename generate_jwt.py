@@ -37,7 +37,7 @@ def create_jwt(private_key, app_id):
     return encoded_jwt
 
 def make_github_api_request():
-    url = "  https://api.github.com/apps"
+    url = "  https://api.github.com/app"
     headers = {
         "Accept": "application/vnd.github+json",
         "Authorization": f"Bearer {os.getenv('GITHUB_JWT')}",
