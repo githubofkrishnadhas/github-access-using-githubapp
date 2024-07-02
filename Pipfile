@@ -4,9 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-jwt = "==1.3.1"
 requests = "==2.32.2"
+jwt = "==1.3.1"
+cryptography = "==42.0.5"
 
+[dev-packages]
+python-dotenv = "==1.0.1"
 
 [requires]
 python_version = "3"
