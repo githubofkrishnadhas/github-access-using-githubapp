@@ -4,6 +4,7 @@ import argparse
 import os
 import requests
 from dotenv import load_dotenv
+from label import create_github_label
 
 def create_jwt(private_key, app_id):
     """
@@ -13,9 +14,9 @@ def create_jwt(private_key, app_id):
     :return:
     """
     # Open PEM
-    # with open(private_key, 'rb') as pem_file:
-    #     signing_key = jwk_from_pem(pem_file.read())
-    signing_key = jwk_from_pem(private_key.encode('utf-8'))
+    with open(private_key, 'rb') as pem_file:
+        signing_key = jwk_from_pem(pem_file.read())
+    # signing_key = jwk_from_pem(private_key.encode('utf-8'))
 
     payload = {
         # Issued at time
@@ -84,7 +85,7 @@ def generate_token_by_post_call(installation_id:int, jwt:str):
     response_json = response.json()
     if response.status_code == 201:
         print(f'Github app installation token generate succcessfully, expires at {response_json["expires_at"]}')
-    os.environ['GH_TOKEN'] = response_json['token']
+    os.environ['GH_APP_TOKEN'] = response_json['token']
 
 def main():
     """
@@ -106,6 +107,7 @@ def main():
     jwt = create_jwt(private_key=private_key, app_id=app_id)
     installation_id = get_app_installation_id(jwt=jwt, github_account_type=github_account_type)
     generate_token_by_post_call(installation_id=installation_id, jwt=jwt)
+
 
 
 if __name__ == "__main__":
