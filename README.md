@@ -32,6 +32,10 @@ Please refer to the [release](https://github.com/githubofkrishnadhas/github-acce
     github_account_type: ''
 ```
 
+# output
+
+The token generated will be available as a Environment variable `GH_TOKEN` which can be used while running api calls
+
 # References
 
 [generating-an-installation-access-token](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app#generating-an-installation-access-token)
