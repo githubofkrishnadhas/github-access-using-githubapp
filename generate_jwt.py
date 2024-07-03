@@ -85,6 +85,9 @@ def generate_token_by_post_call(installation_id:int, jwt:str):
     if response.status_code == 201:
         print(f'Github app installation token generate succcessfully, expires at {response_json["expires_at"]}')
     os.environ['GH_APP_TOKEN'] = response_json['token']
+    # Write the token to GITHUB_ENV to be available in subsequent steps
+    with open(os.environ['GITHUB_ENV'], 'a') as fh:
+        fh.write(f"GH_APP_TOKEN={response_json['token']}\n")
 
 def main():
     """
