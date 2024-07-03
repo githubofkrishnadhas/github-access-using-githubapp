@@ -1,6 +1,9 @@
-name: "create github app json web token"
+name: "Create a GitHub App installation access token"
 description: "GitHub Action for creating a GitHub App installation access token"
 author: "githubofkrishnadhas"
+branding:
+  icon: 'activity'
+  color: 'gray-dark'
 inputs:
   github_app_id:
     description: "Github App ID"
