@@ -5,6 +5,8 @@ Once your GitHub App is installed on an account, you can make it authenticate as
 This allows the app to access resources owned by that installation, as long as the app was granted the necessary repository access and permissions.
 API requests made by an app installation are attributed to the app.
 
+:pushpin:  This action will help in creating github app installation token for both **user accounts** and **Github organizations**
+
 # Parameters of action
 | Parameter name | Description | Required           |
 |----------------|-------------|--------------------|
