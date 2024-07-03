@@ -7,6 +7,8 @@ inputs:
     required: true
   github_app_private_key:
     description: "Github App private key"
+  github_account_type:
+    description: "Github account user or organization"
 runs:
   using: 'docker'
   image: 'Dockerfile'
