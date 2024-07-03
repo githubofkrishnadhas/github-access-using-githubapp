@@ -13,3 +13,4 @@ runs:
   args:
     - ${{ inputs.github_app_id }}
     - ${{ inputs.github_app_private_key }}
+    - ${{ inputs.github_account_type }}
