@@ -34,7 +34,7 @@ Please refer to the [release](https://github.com/githubofkrishnadhas/github-acce
 
 # output
 
-The token generated will be available as a Environment variable `GH_TOKEN` which can be used while running api calls
+The token generated will be available as a Environment variable `GH_APP_TOKEN` which can be used while running api calls
 
 # References
 
