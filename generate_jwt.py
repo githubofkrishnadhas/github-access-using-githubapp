@@ -4,7 +4,6 @@ import argparse
 import os
 import requests
 from dotenv import load_dotenv
-from label import create_github_label
 
 def create_jwt(private_key, app_id):
     """
@@ -14,9 +13,9 @@ def create_jwt(private_key, app_id):
     :return:
     """
     # Open PEM
-    with open(private_key, 'rb') as pem_file:
-        signing_key = jwk_from_pem(pem_file.read())
-    # signing_key = jwk_from_pem(private_key.encode('utf-8'))
+    # with open(private_key, 'rb') as pem_file:
+    #     signing_key = jwk_from_pem(pem_file.read())
+    signing_key = jwk_from_pem(private_key.encode('utf-8'))
 
     payload = {
         # Issued at time
