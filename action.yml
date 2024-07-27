@@ -10,12 +10,19 @@ inputs:
     required: true
   github_app_private_key:
     description: "Github App private key"
-  github_account_type:
-    description: "Github account user or organization"
+    required: true
+  owner:
+    description: "The owner of the GitHub App installation. If empty, defaults to the current repository owner"
+    required: false
+  repositories:
+    description: "Comma-separated list of repositories to grant access to"
+    required: false
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.github_app_id }}
     - ${{ inputs.github_app_private_key }}
-    - ${{ inputs.github_account_type }}
+    - ${{ inputs.owner }}
+    - ${{ inputs.repositories }}
