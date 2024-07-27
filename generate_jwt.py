@@ -116,11 +116,11 @@ def generate_token_by_post_call(installation_id: int, jwt: str, repositories: st
         sys.exit(1)
 
     token = response_json['token']
-    print(f"Token is {token}")
+    # print(f"Token is {token}")
     # with open(os.environ['GITHUB_ENV'], 'a') as fh:
     #     fh.write(f"GH_APP_TOKEN={response_json['token']}\n")
     with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-        fh.write(f'{token}={response_json["token"]}\n')
+        fh.write(f'{token}={token}\n')
 
 
 def main():
