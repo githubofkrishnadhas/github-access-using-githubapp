@@ -85,7 +85,6 @@ def generate_token_by_post_call(installation_id: int, jwt: str, repositories: st
     :param repositories: Comma-separated list of repositories.
     """
     input_repositories = [item.strip() for item in repositories.split(',')]
-    print(f'Input repos - {input_repositories}')
     url = f'https://api.github.com/app/installations/{installation_id}/access_tokens'
     headers = {
         "Accept": "application/vnd.github+json",
@@ -100,7 +99,7 @@ def generate_token_by_post_call(installation_id: int, jwt: str, repositories: st
             "repositories": input_repositories
         }
         response = requests.post(url=url, headers=headers, json=data)
-    # response = requests.post(url=url, headers=headers, json=data)
+
     response_json = response.json()
 
     if response.status_code == 201:
