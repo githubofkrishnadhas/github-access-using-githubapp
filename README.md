@@ -53,8 +53,8 @@ The token generated will be available as a Environment variable `GH_APP_TOKEN` w
 
 # References
 
-[generating-an-installation-access-token](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app#generating-an-installation-access-token)
-[get-a-user-installation-for-the-authenticated-app](https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-a-user-installation-for-the-authenticated-app)
-[get-a-repository-installation-for-the-authenticated-app](https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-a-repository-installation-for-the-authenticated-app)
+* [generating-an-installation-access-token](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app#generating-an-installation-access-token)
+* [get-a-user-installation-for-the-authenticated-app](https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-a-user-installation-for-the-authenticated-app)
+* [get-a-repository-installation-for-the-authenticated-app](https://docs.github.com/en/rest/apps/apps?apiVersion=2022-11-28#get-a-repository-installation-for-the-authenticated-app)
 
 All the above API's uses [JWT](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/about-authentication-with-a-github-app#authenticating-as-a-github-app) as access token.

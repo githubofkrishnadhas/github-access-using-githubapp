@@ -15,7 +15,7 @@ def create_jwt(private_key, app_id):
     """
     # Open PEM
     # with open(private_key, 'rb') as pem_file:
-    #     signing_key = jwk_from_pem(pem_file.read())
+        # signing_key = jwk_from_pem(pem_file.read())
     signing_key = jwk_from_pem(private_key.encode('utf-8'))
 
     payload = {
@@ -153,8 +153,10 @@ def main():
             repositories = 'all'  # You can decide on a default behavior here, e.g., an empty list or a specific action
             print(f"Selecting all repos under owner {owner}")
         else:
-            print("No repositories specified. Considering current repository as repositories")
-            repositories = os.getenv('GITHUB_REPOSITORY')  # Assign a default or dynamically determined value
+            print("No repositories & owner specified. Considering current repository as repositories")
+            os_repositories = os.getenv('GITHUB_REPOSITORY')  # Assign a default or dynamically determined value
+            parts = os_repositories.split('/')
+            repositories = parts[1]
     else:
         repositories = args.repositories
         print(f"Will generate tokens for {repositories}")
