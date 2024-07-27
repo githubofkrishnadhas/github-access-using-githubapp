@@ -115,9 +115,13 @@ def generate_token_by_post_call(installation_id: int, jwt: str, repositories: st
         print(f'Aborting GitHub App installation token generation')
         sys.exit(1)
 
-    os.environ['GH_APP_TOKEN'] = response_json['token']
-    with open(os.environ['GITHUB_ENV'], 'a') as fh:
-        fh.write(f"GH_APP_TOKEN={response_json['token']}\n")
+    token = response_json['token']
+    print(f"Token is {token}")
+    # with open(os.environ['GITHUB_ENV'], 'a') as fh:
+    #     fh.write(f"GH_APP_TOKEN={response_json['token']}\n")
+    with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
+        fh.write(f'{token}={response_json["token"]}\n')
+
 
 def main():
     """
