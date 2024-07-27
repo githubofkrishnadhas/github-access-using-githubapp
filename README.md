@@ -1,5 +1,4 @@
 # github-access-using-githubapp
-github-access-using-githubapp
 
 Once your GitHub App is installed on an account, you can make it authenticate as an app installation for API requests.
 This allows the app to access resources owned by that installation, as long as the app was granted the necessary repository access and permissions.
@@ -30,9 +29,10 @@ API requests made by an app installation are attributed to the app.
 
 Please refer to the [release](https://github.com/githubofkrishnadhas/github-access-using-githubapp/releases) page for the latest release notes.
 
-# Usage
+# Usage 
 ```commandline
-- uses: githubofkrishnadhas/github-access-using-githubapp@v1
+- uses: githubofkrishnadhas/github-access-using-githubapp@v2
+  id: token-generation
   with:
     # Your GitHub App ID - interger value
     github_app_id: 1234567
@@ -49,7 +49,91 @@ Please refer to the [release](https://github.com/githubofkrishnadhas/github-acce
 
 # output
 
-The token generated will be available as a Environment variable `GH_APP_TOKEN` which can be used while running api calls
+* The token generated will be available as a ${{ steps.token-generation.outputs.token }}  which can be used in later stages as required
+
+# Example usages
+
+## Create a token for the current repository
+
+```commandline
+uses: githubofkrishnadhas/github-access-using-githubapp@v2
+  id: token-generation
+  with:
+    github_app_id: ${{ secrets.APP_ID }}
+    github_app_private_key : ${{ secrets.PRIVATE_KEY }}
+```
+* To create a Token in the scope of current repository where action is run, you do not need to specify `owner` or `repositores` 
+* Assuming both GitHub App ID and Private key are present as github secrets with names `APP_ID` and `PRIVATE_KEY`
+* You can substitute your secrets names with above
+* The token generated will be available as a ${{ steps.token-generation.outputs.token }}  which can be used in later stages as required
+
+
+## Create a token for the current user or organization level
+
+```commandline
+uses: githubofkrishnadhas/github-access-using-githubapp@v2
+  id: token-generation
+  with:
+    github_app_id: ${{ secrets.APP_ID }}
+    github_app_private_key : ${{ secrets.PRIVATE_KEY }}
+    owner: 'github'
+```
+* To create a Token in the scope of current user or organization where your Github app has access, you need only to specify `owner`
+* Assuming both GitHub App ID and Private key are present as github secrets with names `APP_ID` and `PRIVATE_KEY`
+* You can substitute your secrets names with above
+* The token generated will be available as a ${{ steps.token-generation.outputs.token }}  which can be used in later stages as required
+
+
+## Create a token for a differnt user or organization scoped to specific repos
+
+```commandline
+uses: githubofkrishnadhas/github-access-using-githubapp@v2
+  id: token-generation
+  with:
+    github_app_id: ${{ secrets.APP_ID }}
+    github_app_private_key : ${{ secrets.PRIVATE_KEY }}
+    owner: 'github'
+    repositories: 'test1,test2,test3'
+```
+* To create a Token in the scope of provided repositories and owner where your Github app has access you need only to specify `owner` and `repositories`
+* The above will generate token which are scoped to repositores named `test1, test2, test3` on `github` org
+* Assuming both GitHub App ID and Private key are present as github secrets with names `APP_ID` and `PRIVATE_KEY`
+* You can substitute your secrets names with above
+* The token generated will be available as a ${{ steps.token-generation.outputs.token }}  which can be used in later stages as required
+
+
+## Using the token generated with other actions
+
+```commandline
+name: Clone Repository
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Token generator
+      uses: githubofkrishnadhas/github-access-using-githubapp@v2
+      id: token-generation
+      with:
+        github_app_id: ${{ secrets.APP_ID }}
+        github_app_private_key : ${{ secrets.PRIVATE_KEY }}
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        repository: 'devwithkrishna/azure-terraform-modules'
+        token: ${{ steps.token-generation.outputs.token }}
+        fetch-depth: 1
+```
+* The above workflow generates a github app installation access token using the action - `githubofkrishnadhas/github-access-using-githubapp@v2`
+* The token generated will be available as a ${{ steps.token-generation.outputs.token }}  which can be used in later stages as shown above
+* The workflow is to clone a repository named `azure-terraform-modules` inside `devwithkrishna` organization
+
 
 # References
 
