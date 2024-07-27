@@ -14,8 +14,10 @@ def create_jwt(private_key, app_id):
     :return: Encoded JWT.
     """
     # Open PEM
-    with open(private_key, 'rb') as pem_file:
-        signing_key = jwk_from_pem(pem_file.read())
+    # with open(private_key, 'rb') as pem_file:
+    #     signing_key = jwk_from_pem(pem_file.read())
+    signing_key = jwk_from_pem(private_key.encode('utf-8'))
+
 
     payload = {
         'iat': int(time.time()),  # Issued at time
