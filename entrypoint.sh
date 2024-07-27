@@ -24,7 +24,5 @@ fi
 echo "Executing command: $CMD"
 eval "$CMD"
 
-## run python program to generate token
-#pipenv run python3 /app/generate_jwt.py --github_app_id "$1" --github_app_private_key "$2" --owner "$3" --repositories "$4"
 
 

@@ -92,10 +92,15 @@ def generate_token_by_post_call(installation_id: int, jwt: str, repositories: st
         "Authorization": f"Bearer {jwt}",
         "X-GitHub-Api-Version": "2022-11-28"
     }
-    data = {
-        "repositories": input_repositories
-    }
-    response = requests.post(url=url, headers=headers, json=data)
+
+    if input_repositories == ['all']:
+        response = requests.post(url=url, headers=headers)
+    else:
+        data = {
+            "repositories": input_repositories
+        }
+        response = requests.post(url=url, headers=headers, json=data)
+    # response = requests.post(url=url, headers=headers, json=data)
     response_json = response.json()
 
     if response.status_code == 201:
