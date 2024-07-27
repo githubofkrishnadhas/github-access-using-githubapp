@@ -5,16 +5,26 @@ Once your GitHub App is installed on an account, you can make it authenticate as
 This allows the app to access resources owned by that installation, as long as the app was granted the necessary repository access and permissions.
 API requests made by an app installation are attributed to the app.
 
-:pushpin:  This action will help in creating github app installation token for both **user accounts** and **Github organizations**
+:pushpin:  This action will help in creating GitHub app installation token for both **user accounts** and **Github organizations**
+
+> [!IMPORTANT]  
+> An installation access token expires after 1 hour. Please find suitable alternative approaches if you have long-running processes..
 
 # Parameters of action
-| Parameter name | Description | Required           |
-|----------------|-------------|--------------------|
-| github_app_private_key | Github App Private key | :heavy_check_mark: |
-| github_app_id | Your GitHub App ID | :heavy_check_mark: |
-| github_account_type | Github account whether `user` account or `organization` | :heavy_check_mark: |
+| Parameter name | Description                                                                                                    | Required          |
+|----------------|----------------------------------------------------------------------------------------------------------------|-------------------|
+| github_app_private_key | Github App Private key                                                                                         | :heavy_check_mark: |
+| github_app_id | Your GitHub App ID                                                                                             | :heavy_check_mark: |
+| owner | Github account owner name. if not specified takes owner of current repository where action is ran              | ❌ |
+| repositories | List of github repositores to generte token for. if not specified takes current repository where action is ran. | ❌ |
 
-* Store your `Github App Id` and `Github App Private key` as github secret and pass the secret names as inuts for action.
+* Store your `Github App Id` and `Github App Private key` as github secret and pass the secret names as inputs for action.
+
+* ❌ 👉 Means optional values
+
+> [!NOTE]  
+> If the owner is set but repositories are empty, access will include all repositories for that owner.
+> If both the owner and repositories are empty, access will be limited to the current repository.
 
 # What's New
 
@@ -27,11 +37,14 @@ Please refer to the [release](https://github.com/githubofkrishnadhas/github-acce
     # Your GitHub App ID - interger value
     github_app_id: 1234567
 
-    # Github App Private key 
+    # GitHub App Private key 
     github_app_private_key : ''
 
-    # Gituhb account type `user` or `organization` only
-    github_account_type: ''
+    # GitHub account Owner name - Optional
+    owner: ''
+    
+    # GitHub repositories names seperated by comma if more than 1 - optional
+    repositories: ''
 ```
 
 # output
