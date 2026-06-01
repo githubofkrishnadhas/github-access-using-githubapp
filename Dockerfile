@@ -5,8 +5,10 @@ WORKDIR /app
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY . /app/
 
-# Install pipenv
-RUN chmod +x entrypoint.sh &&  apt-get update -y && curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install uv
+RUN chmod +x entrypoint.sh &&  apt-get update -y && pip install uv
+# Add uv to PATH
+ENV PATH="/root/.local/bin:$PATH"
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/app/entrypoint.sh"]
