@@ -7,8 +7,6 @@ COPY . /app/
 
 # Install uv
 RUN chmod +x entrypoint.sh &&  apt-get update -y && pip install uv
-# Add uv to PATH
-ENV PATH="/root/.local/bin:$PATH"
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["/app/entrypoint.sh"]
