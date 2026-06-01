@@ -1,0 +1,15 @@
+[project]
+name = "github-access-using-githubapp"
+version = "3.0.0"
+description = "An action to generate GitHub Installation Access Token using GitHub App's private key and AppId."
+requires-python = ">=3.13"
+authors = [
+    { name = "githubofkrishnadhas" }
+]
+
+dependencies = [
+    "requests >= 2.34.2",
+    "jwt>= 1.4.0",
+    "cryptography >=48.0.0",
+    "python-dotenv >= 1.2.2"
+]

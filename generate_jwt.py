@@ -14,9 +14,9 @@ def create_jwt(private_key, app_id):
     :return: Encoded JWT.
     """
     # Open PEM
-    # with open(private_key, 'rb') as pem_file:
-    #     signing_key = jwk_from_pem(pem_file.read())
-    signing_key = jwk_from_pem(private_key.encode('utf-8'))
+    with open(private_key, 'rb') as pem_file:
+        signing_key = jwk_from_pem(pem_file.read())
+    # signing_key = jwk_from_pem(private_key.encode('utf-8'))
 
 
     payload = {
@@ -116,6 +116,7 @@ def generate_token_by_post_call(installation_id: int, jwt: str, repositories: st
         sys.exit(1)
 
     token = response_json['token']    # setting the output token as token inside github output
+    print(token)
     with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
         fh.write(f'token={token}\n')
 
