@@ -31,7 +31,7 @@ Please refer to the [release](https://github.com/githubofkrishnadhas/github-acce
 
 # Usage 
 ```commandline
-- uses: githubofkrishnadhas/github-access-using-githubapp@v2
+- uses: githubofkrishnadhas/github-access-using-githubapp@v3
   id: token-generation
   with:
     # Your GitHub App ID - interger value
@@ -56,7 +56,7 @@ Please refer to the [release](https://github.com/githubofkrishnadhas/github-acce
 ## Create a token for the current repository
 
 ```commandline
-uses: githubofkrishnadhas/github-access-using-githubapp@v2
+uses: githubofkrishnadhas/github-access-using-githubapp@v3
   id: token-generation
   with:
     github_app_id: ${{ secrets.APP_ID }}
@@ -71,7 +71,7 @@ uses: githubofkrishnadhas/github-access-using-githubapp@v2
 ## Create a token for the current user or organization level
 
 ```commandline
-uses: githubofkrishnadhas/github-access-using-githubapp@v2
+uses: githubofkrishnadhas/github-access-using-githubapp@v3
   id: token-generation
   with:
     github_app_id: ${{ secrets.APP_ID }}
@@ -87,7 +87,7 @@ uses: githubofkrishnadhas/github-access-using-githubapp@v2
 ## Create a token for a differnt user or organization scoped to specific repos
 
 ```commandline
-uses: githubofkrishnadhas/github-access-using-githubapp@v2
+uses: githubofkrishnadhas/github-access-using-githubapp@v3
   id: token-generation
   with:
     github_app_id: ${{ secrets.APP_ID }}
@@ -117,7 +117,7 @@ jobs:
     steps:
 
     - name: Token generator
-      uses: githubofkrishnadhas/github-access-using-githubapp@v2
+      uses: githubofkrishnadhas/github-access-using-githubapp@v3
       id: token-generation
       with:
         github_app_id: ${{ secrets.APP_ID }}
@@ -130,7 +130,7 @@ jobs:
         token: ${{ steps.token-generation.outputs.token }}
         fetch-depth: 1
 ```
-* The above workflow generates a github app installation access token using the action - `githubofkrishnadhas/github-access-using-githubapp@v2`
+* The above workflow generates a github app installation access token using the action - `githubofkrishnadhas/github-access-using-githubapp@v3`
 * The token generated will be available as a ${{ steps.token-generation.outputs.token }}  which can be used in later stages as shown above
 * The workflow is to clone a repository named `azure-terraform-modules` inside `devwithkrishna` organization
 
