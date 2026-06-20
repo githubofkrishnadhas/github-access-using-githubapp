@@ -10,6 +10,6 @@ authors = [
 dependencies = [
     "requests >= 2.34.2",
     "jwt>= 1.4.0",
-    "cryptography >=48.0.0",
+    "cryptography>=48.0.1",
     "python-dotenv >= 1.2.2"
 ]
